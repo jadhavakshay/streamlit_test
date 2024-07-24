@@ -31,17 +31,6 @@ options = st.multiselect(
 
 st.write('You selected:', options)
 
-st.json({
-    'foo': 'bar',
-    'baz': 'boz',
-    'stuff': [
-        'stuff 1',
-        'stuff 2',
-        'stuff 3',
-        'stuff 5',
-    ],
-})
-
 chart_data = pd.DataFrame(
     np.random.randn(20, 3),
     columns=['a', 'b', 'c'])
@@ -49,8 +38,12 @@ chart_data = pd.DataFrame(
 st.line_chart(chart_data)
 
 df = pd.DataFrame(
-   np.random.randn(50, 20),
+   np.random.randn(50, 10),
    columns=('col %d' % i for i in range(20)))
 
 st.dataframe(df)
-st.line_chart(df)
+
+uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"])
+if uploaded_file is not None:
+    image = uploaded_file.read()
+    st.image(image, caption='uploaded image', use_column_width=True)
