@@ -6,8 +6,8 @@ import plotly.figure_factory as ff
 import streamlit as st
 
 # Title widget
-st.title('This is a title')
-st.text("This is some text")
+st.title('Streamlit')
+st.text("Function test")
 
 # radio widget to take inputs from mulitple options
 genre = st.radio(
