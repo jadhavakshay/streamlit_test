@@ -39,7 +39,7 @@ st.line_chart(chart_data)
 
 df = pd.DataFrame(
    np.random.randn(50, 10),
-   columns=('col %d' % i for i in range(20)))
+   columns=('col %d' % i for i in range(10)))
 
 st.dataframe(df)
 
