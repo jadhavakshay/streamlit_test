@@ -1,6 +1,7 @@
 
 import pandas as pd
 import numpy as np
+import scipy
 import plotly.figure_factory as ff
 import streamlit as st
 
