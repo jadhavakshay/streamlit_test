@@ -93,13 +93,8 @@ uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"], a
 st.write(uploaded_file)
 file_str_list = []
 for i in range(0, len(uploaded_file)):
-    rule = uploaded_file[i]
-    st.write(rule.name)
-    reg = re.compile(r'name=.*?\'(.*?)\', type')
-    ruleMatch = reg.search(rule)
-    if ruleMatch != None:
-        file_list.append(ruleMatch.group(1))
-        print(ruleMatch.group(1))
+    file_name = uploaded_file[i].name
+    file_str_list.append(file_name)
 
 # directory = r'D:\\Streamlit\\test\\img'
 # files = listdir(directory)
