@@ -54,4 +54,4 @@ if uploaded_file is not None:
         image = img.read()
         st.image(image, caption='uploaded image', use_column_width=True)
 
-st.write(type(uploaded_file))
+st.write(uploaded_file)
