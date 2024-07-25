@@ -131,7 +131,6 @@ def update(image, col):
 # st.write('files --------------', files)
 if len(files) > 0:
     batch = files[(page-1)*batch_size : page*batch_size]
-    # st.write('batch --------------', batch)
     grid = st.columns(row_size)
     col = 0
     for uploaded_file in uploaded_files:
@@ -139,12 +138,9 @@ if len(files) > 0:
             with grid[col]:
                 if uploaded_file.name == image:
                     show_img = uploaded_file.read()
-                    # st.write(type(show_img))
-                    # st.write('uploaded_file --------------', type(uploaded_file[i]))
-                    # st.write('show_img --------------', show_img)
                     st.image(show_img, caption=image)
                     st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
-                                # value=df.at[image, 'incorrect'],
+                                value=df.at[image, 'incorrect'],
                                 on_change=update, args=(str(image), 'incorrect'))
             col = (col + 1) % row_size
     
