@@ -140,7 +140,7 @@ if len(files) > 0:
                     show_img = uploaded_file.read()
                     st.image(show_img, caption=image)
                     st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
-                                value=df.at[image, 'incorrect'],
+                                # value=df.at[image, 'incorrect'],
                                 on_change=update, args=(str(image), 'incorrect'))
             col = (col + 1) % row_size
     
