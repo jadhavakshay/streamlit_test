@@ -128,17 +128,17 @@ def update(image, col):
        df.at[image] = ''
 
 st.write(type(files))
-st.write(files)
+st.write('files --------------', files)
 if len(files) > 0:
     batch = files[(page-1)*batch_size : page*batch_size]
-    st.write(batch)
+    st.write('batch --------------', batch)
     grid = st.columns(row_size)
     col = 0
     for image in batch:
         with grid[col]:
             show_img = uploaded_file[i].name
             # st.write(type(show_img))
-            st.write(show_img)
+            st.write('show_img --------------', show_img)
             st.image(f'{file_str_list}\{image}', caption=image)
             st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
                         # value=df.at[image, 'incorrect'],
