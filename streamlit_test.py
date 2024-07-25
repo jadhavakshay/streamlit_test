@@ -127,6 +127,8 @@ def update(image, col):
     if st.session_state[f'incorrect_{image}'] == False:
        df.at[image] = ''
 
+st.write(type(files))
+st.write(files)
 batch = files[(page-1)*batch_size : page*batch_size]
 
 grid = st.columns(row_size)
