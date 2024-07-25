@@ -89,11 +89,10 @@ from math import ceil
 import pandas as pd
 import re
 
-uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 file_str_list = []
-for i in range(0, len(uploaded_file)):
-    file_name = uploaded_file[i].name
-    file_str_list.append(file_name)
+for uploaded_file in uploaded_files:
+    file_str_list.append(uploaded_file.name)
 
 # directory = r'D:\\Streamlit\\test\\img'
 # files = listdir(directory)
@@ -134,17 +133,19 @@ if len(files) > 0:
     st.write('batch --------------', batch)
     grid = st.columns(row_size)
     col = 0
-    for image in batch:
-        with grid[col]:
-            show_img = uploaded_file[i].name
-            # st.write(type(show_img))
-            st.write('uploaded_file --------------', type(uploaded_file[i]))
-            st.write('show_img --------------', show_img)
-            st.image(f'{file_str_list}\{image}', caption=image)
-            st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
-                        # value=df.at[image, 'incorrect'],
-                        on_change=update, args=(image, 'incorrect'))
-        col = (col + 1) % row_size
+    for uploaded_file in uploaded_files:
+        for image in batch:
+            with grid[col]:
+                if uploaded_file.name == image:
+                    show_img = uploaded_file.read()
+                    # st.write(type(show_img))
+                    st.write('uploaded_file --------------', type(uploaded_file[i]))
+                    st.write('show_img --------------', show_img)
+                    st.image(show_img, caption=image)
+                    st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
+                                # value=df.at[image, 'incorrect'],
+                                on_change=update, args=(image, 'incorrect'))
+            col = (col + 1) % row_size
     
     if 'incorrect' in df.columns:
         st.write('## Corrections needed')
