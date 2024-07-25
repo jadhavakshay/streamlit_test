@@ -126,11 +126,11 @@ def update(image, col):
     if st.session_state[f'incorrect_{image}'] == False:
        df.at[image] = ''
 
-st.write(type(files))
-st.write('files --------------', files)
+# st.write(type(files))
+# st.write('files --------------', files)
 if len(files) > 0:
     batch = files[(page-1)*batch_size : page*batch_size]
-    st.write('batch --------------', batch)
+    # st.write('batch --------------', batch)
     grid = st.columns(row_size)
     col = 0
     for uploaded_file in uploaded_files:
@@ -139,8 +139,8 @@ if len(files) > 0:
                 if uploaded_file.name == image:
                     show_img = uploaded_file.read()
                     # st.write(type(show_img))
-                    st.write('uploaded_file --------------', type(uploaded_file[i]))
-                    st.write('show_img --------------', show_img)
+                    # st.write('uploaded_file --------------', type(uploaded_file[i]))
+                    # st.write('show_img --------------', show_img)
                     st.image(show_img, caption=image)
                     st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
                                 # value=df.at[image, 'incorrect'],
