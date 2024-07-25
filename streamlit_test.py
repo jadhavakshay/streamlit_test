@@ -47,3 +47,9 @@ uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"])
 if uploaded_file is not None:
     image = uploaded_file.read()
     st.image(image, caption='uploaded image', use_column_width=True)
+
+uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+if uploaded_file is not None:
+    for img in uploaded_file:
+        image = img.read()
+        st.image(image, caption='uploaded image', use_column_width=True)
