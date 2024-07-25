@@ -90,7 +90,6 @@ import pandas as pd
 import re
 
 uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
-st.write(uploaded_file)
 file_str_list = []
 for i in range(0, len(uploaded_file)):
     file_name = uploaded_file[i].name
@@ -99,7 +98,6 @@ for i in range(0, len(uploaded_file)):
 # directory = r'D:\\Streamlit\\test\\img'
 # files = listdir(directory)
 files = file_str_list
-st.write(files)
 
 def initialize():
     df = pd.DataFrame({'file':files,
@@ -135,7 +133,7 @@ grid = st.columns(row_size)
 col = 0
 for image in batch:
     with grid[col]:
-        st.image(f'{uploaded_file}\{image}', caption=image)
+        st.image(f'{file_str_list}\{image}', caption=image)
         st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
                     # value=df.at[image, 'incorrect'],
                     on_change=update, args=(image, 'incorrect'))
