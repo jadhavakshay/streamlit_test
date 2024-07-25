@@ -87,10 +87,24 @@ import streamlit as st
 from os import listdir
 from math import ceil
 import pandas as pd
+import re
 
-directory = r'D:\\Streamlit\\test\\img'
-files = listdir(directory)
+uploaded_file = st.file_uploader("Choose a File", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+
+file_str_list = []
+for i in range(0, len(uploaded_file)):
+    rule = uploaded_file[i]
+    reg = re.compile(r'name=.*?\'(.*?)\', type')
+    ruleMatch = reg.search(rule)
+    if ruleMatch != None:
+        file_list.append(ruleMatch.group(1))
+        print(ruleMatch.group(1))
+
+# directory = r'D:\\Streamlit\\test\\img'
+# files = listdir(directory)
+files = file_str_list
 st.write(files)
+
 def initialize():
     df = pd.DataFrame({'file':files,
                     'incorrect':[False]*len(files)})
