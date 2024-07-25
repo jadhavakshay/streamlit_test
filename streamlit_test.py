@@ -129,19 +129,20 @@ def update(image, col):
 
 st.write(type(files))
 st.write(files)
-batch = files[(page-1)*batch_size : page*batch_size]
-
-grid = st.columns(row_size)
-col = 0
-for image in batch:
-    with grid[col]:
-        st.image(f'{file_str_list}\{image}', caption=image)
-        st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
-                    # value=df.at[image, 'incorrect'],
-                    on_change=update, args=(image, 'incorrect'))
-    col = (col + 1) % row_size
-
-if 'incorrect' in df.columns:
-    st.write('## Corrections needed')
-    df[df['incorrect']==True]
+if len(files) > 0:
+    batch = files[(page-1)*batch_size : page*batch_size]
+    
+    grid = st.columns(row_size)
+    col = 0
+    for image in batch:
+        with grid[col]:
+            st.image(f'{file_str_list}\{image}', caption=image)
+            st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
+                        # value=df.at[image, 'incorrect'],
+                        on_change=update, args=(image, 'incorrect'))
+        col = (col + 1) % row_size
+    
+    if 'incorrect' in df.columns:
+        st.write('## Corrections needed')
+        df[df['incorrect']==True]
 
