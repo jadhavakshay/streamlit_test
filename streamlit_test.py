@@ -135,7 +135,7 @@ grid = st.columns(row_size)
 col = 0
 for image in batch:
     with grid[col]:
-        st.image(f'{directory}\{image}', caption=image)
+        st.image(f'{uploaded_file}\{image}', caption=image)
         st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
                     # value=df.at[image, 'incorrect'],
                     on_change=update, args=(image, 'incorrect'))
