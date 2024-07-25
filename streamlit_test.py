@@ -124,6 +124,7 @@ with controls[2]:
 def update(image, col):
     df.at[image,col] = st.session_state[f'{col}_{image}']
     if st.session_state[f'incorrect_{image}'] == False:
+        st.write(df)
         df.at[image] = ''
 
 # st.write(type(files))
