@@ -136,7 +136,7 @@ if len(files) > 0:
     col = 0
     for image in batch:
         with grid[col]:
-            show_img = uploaded_file[i](uploaded_file[i].name==image)
+            show_img = uploaded_file[i].name
             st.write(type(show_img))
             st.write(show_img)
             st.image(f'{file_str_list}\{image}', caption=image)
