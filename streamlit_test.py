@@ -122,6 +122,7 @@ with controls[2]:
 
 
 def update(image, col):
+    df = df.reset_index(drop=True)
     df.at[image,col] = st.session_state[f'{col}_{image}']
     if st.session_state[f'incorrect_{image}'] == False:
        df.at[image] = ''
