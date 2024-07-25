@@ -148,7 +148,7 @@ if len(files) > 0:
                                 on_change=update, args=(str(image), 'incorrect'))
             col = (col + 1) % row_size
     
-    if 'incorrect' in df.columns:
+    if 'incorrect' in df.columns and len(df[df['incorrect'] == True]) > 0:
         st.write('## Corrections needed')
         df[df['incorrect']==True]
 
