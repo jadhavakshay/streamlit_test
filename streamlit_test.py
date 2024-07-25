@@ -138,7 +138,7 @@ if len(files) > 0:
         with grid[col]:
             show_img = uploaded_file[i].name
             # st.write(type(show_img))
-            st.write('uploaded_file --------------', uploaded_file[i])
+            st.write('uploaded_file --------------', type(uploaded_file[i]))
             st.write('show_img --------------', show_img)
             st.image(f'{file_str_list}\{image}', caption=image)
             st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
