@@ -32,20 +32,20 @@ st.line_chart(chart_data)
 
 
 def initialize():
-    if 'df' not in st.session_state:
+    if 'df_2' not in st.session_state:
         data = {}
         for i in range(5):
             col = f'column_{i}'
             data[col] = range(5)
         st.write('initializing')
-        df = pd.DataFrame(data)
-        st.session_state.df = df
-        st.session_state.columns = list(df.columns)
+        df_2 = pd.DataFrame(data)
+        st.session_state.df_2 = df_2
+        st.session_state.columns = list(df_2.columns)
 
 
 initialize()
 
-df = st.session_state.df
+df_2 = st.session_state.df_2
 columns = st.session_state.columns
 
 
@@ -69,7 +69,7 @@ with configure[1]:
     with excluded:
         st.write('')
 
-for col in df.columns:
+for col in df_2.columns:
     if col in st.session_state.columns:
         with included:
             st.checkbox(col, key=col, value=False, on_change=move_column, args=(col, True))
@@ -77,7 +77,7 @@ for col in df.columns:
         with excluded:
             st.checkbox(col, key=col, value=True, on_change=move_column, args=(col, False))
 
-df[columns]
+df_2[columns]
 
 st.markdown('''<style>[data-testid="stExpander"] ul [data-testid="stVerticalBlock"] 
                {overflow-y:scroll; max-height:400px;} </style>''', unsafe_allow_html=True)
