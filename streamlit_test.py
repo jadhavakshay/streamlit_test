@@ -94,7 +94,7 @@ st.write(uploaded_file)
 file_str_list = []
 for i in range(0, len(uploaded_file)):
     rule = uploaded_file[i]
-    st.write(rule)
+    st.write(type(rule))
     reg = re.compile(r'name=.*?\'(.*?)\', type')
     ruleMatch = reg.search(rule)
     if ruleMatch != None:
