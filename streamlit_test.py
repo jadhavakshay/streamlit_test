@@ -6,6 +6,16 @@ from io import StringIO
 
 st.title("Streamlit")
 
+from sqlalchemy import create_engine
+if st.button('Connect to master table'):
+    conn = create_engine("mysql://admin:-S1rHz(A(Yz9$cWQqwvhB]d-+LC5@ratingsai-dev-mysql-standalone.csfbi9h6dndo.us-east-1.rds.amazonaws.com/ai_spherexratings?charset=utf8mb4")
+    SQL_Query = pd.read_sql('SELECT Flag, RollUpStatus, CreatedDate, ExecutionFolderId, TitleId, TotalRuntime, SeriesOrFeatureName, ImageStatus, SceneStatus, TextStatus, AudioStatus, PaymentFlag FROM ai_spherexratings.mastertable where PaymentFlag=1 and CreatedDate >= DATE_ADD(CURDATE(), INTERVAL -5 DAY) order by CreatedDate desc;', conn)
+    st.write("### AI Data Verification")
+    df = pd.DataFrame(SQL_Query, columns=['Flag', 'RollUpStatus', 'CreatedDate', 'ExecutionFolderId', 'TitleId',
+                                                'TotalRuntime', 'SeriesOrFeatureName', 'ImageStatus', 'SceneStatus',
+                                                'TextStatus', 'AudioStatus', 'PaymentFlag'])
+    st.dataframe(data=df)
+
 data = {}
 for i in range(10):
     col = f'column_{i}'
