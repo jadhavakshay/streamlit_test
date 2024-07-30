@@ -107,7 +107,7 @@ for uploaded_file in uploaded_files:
 # directory = r'D:\\Streamlit\\test\\img'
 # files = listdir(directory)
 files = file_str_list
-st.write(files)
+st.write(uploaded_file)
 
 def initialize():
     df = pd.DataFrame({'file':files,
