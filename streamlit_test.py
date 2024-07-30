@@ -107,6 +107,7 @@ for uploaded_file in uploaded_files:
 # directory = r'D:\\Streamlit\\test\\img'
 # files = listdir(directory)
 files = file_str_list
+st.write(files)
 
 def initialize():
     df = pd.DataFrame({'file':files,
@@ -161,7 +162,7 @@ if len(files) > 0:
         st.write('## Corrections needed')
         df[df['incorrect']==True]
 
-df = pd.DataFrame(
+df_new = pd.DataFrame(
     [
         [2768571, 130655, 1155027, 34713051, 331002277],
         [1448753, 60632, 790040, 3070447, 212558178],
@@ -177,16 +178,16 @@ df = pd.DataFrame(
         "Population",
     ],
 )
-df["Country"] = img_icon_list[0:5]
+df_new["Country"] = img_icon_list[0:5]
 def path_to_image_html(path):
     return '<img src="' + path + '" width="60" >'
 
 
 st.markdown(
-    df.to_html(escape=False, formatters=dict(Country=path_to_image_html)),
+    df_new.to_html(escape=False, formatters=dict(Country=path_to_image_html)),
     unsafe_allow_html=True,
 )
 
 # Saving the dataframe as a webpage - works
 if st.button('Download data as HTML'):
-    df.to_html("webpage.html", escape=False, formatters=dict(Country=path_to_image_html))
+    df_new.to_html("webpage.html", escape=False, formatters=dict(Country=path_to_image_html))
