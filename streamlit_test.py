@@ -178,7 +178,15 @@ df_new = pd.DataFrame(
         "Population",
     ],
 )
-df_new["Country"] = img_icon_list[0:5]
+country = [
+    "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+    "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
+    "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Australia.svg",
+]
+df_new["Country"] = country
+# df_new["Country"] = img_icon_list[0:5]
 def path_to_image_html(path):
     return '<img src="' + path + '" width="60" >'
 
