@@ -179,7 +179,8 @@ df_new = pd.DataFrame(
     ],
 )
 country = [
-    "D:\\Streamlit\\test\\img\\F_10.jpg",
+    #"D:\\Streamlit\\test\\img\\F_10.jpg",
+    uploaded_files[0].read(),
     #"https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
     "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
     "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
