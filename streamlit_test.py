@@ -140,6 +140,7 @@ def update(image, col):
 
 # st.write(type(files))
 # st.write('files --------------', files)
+img_icon_list = []
 if len(files) > 0:
     batch = files[(page-1)*batch_size : page*batch_size]
     grid = st.columns(row_size)
@@ -149,6 +150,7 @@ if len(files) > 0:
             with grid[col]:
                 if uploaded_file.name == image:
                     show_img = uploaded_file.read()
+                    img_icon_list.append(show_img)
                     st.image(show_img, caption=image)
                     st.checkbox("Incorrect", key=f'incorrect_{str(image)}',
                                 # value=df.at[image, 'incorrect'],
@@ -159,3 +161,32 @@ if len(files) > 0:
         st.write('## Corrections needed')
         df[df['incorrect']==True]
 
+df = pd.DataFrame(
+    [
+        [2768571, 130655, 1155027, 34713051, 331002277],
+        [1448753, 60632, 790040, 3070447, 212558178],
+        [654405, 9536, 422931, 19852167, 145934619],
+        [605216, 17848, 359891, 8826585, 1379974505],
+        [288477, 9860, 178245, 1699369, 32969875],
+    ],
+    columns=[
+        "Total Cases",
+        "Total Deaths",
+        "Total Recovered",
+        "Total Tests",
+        "Population",
+    ],
+)
+df["Country"] = img_icon_list[0:5]
+def path_to_image_html(path):
+    return '<img src="' + path + '" width="60" >'
+
+
+st.markdown(
+    df.to_html(escape=False, formatters=dict(Country=path_to_image_html)),
+    unsafe_allow_html=True,
+)
+
+# Saving the dataframe as a webpage - works
+if st.button('Download data as HTML'):
+    df.to_html("webpage.html", escape=False, formatters=dict(Country=path_to_image_html))
